@@ -14,8 +14,10 @@ function Header({}: Props) {
     useEffect(()=>{
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark')
+            setCurrentTheme("dark");
           } else {
             document.documentElement.classList.remove('dark')
+            setCurrentTheme("light");
           }
     },[]);
 
@@ -32,7 +34,7 @@ function Header({}: Props) {
     }
 
   return (
-    <div className='bg-white fixed left-0 top-0 w-full'>
+    <div className='bg-white dark:bg-gray-800 fixed left-0 top-0 w-full'>
         <div className="container mx-auto h-[10vh] flex justify-between">
             <div className='flex items-center'>
                 <h1 className='text-lg font-bold lg:text-2xl text-cyan-400'>MyMedia</h1>
@@ -47,11 +49,13 @@ function Header({}: Props) {
                 <li className='ml-2 md:ml-5'>
                     {
                         currentTheme === "dark" ? (
-                            <BsFillSunFill onClick={()=> changeTheme("light")} 
-                            className='cursor-pointer text-lg hover:text-black hover:scale-110 transition-all dark:text-gray-200' />
+                            <BsFillSunFill
+                            className='cursor-pointer text-lg hover:text-black hover:scale-110 transition-all dark:text-gray-200' 
+                            onClick={()=> changeTheme("light")} />
                         ) : (
-                            <BsFillMoonFill onClick={()=> changeTheme("dark")} 
-                            className='cursor-pointer text-lg hover:text-black hover:scale-110 transition-all dark:text-gray-200' />
+                            <BsFillMoonFill
+                            className='cursor-pointer text-lg hover:text-black hover:scale-110 transition-all dark:text-gray-200' 
+                            onClick={()=> changeTheme("dark")} />
                         )
                     }
                 </li>
