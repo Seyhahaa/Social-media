@@ -1,0 +1,1 @@
+export const base_url = "https://social-media-api-k0mv.onrender.com"
